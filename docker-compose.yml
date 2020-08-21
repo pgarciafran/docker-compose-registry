@@ -11,8 +11,3 @@ services:
     environment:
       - "constraint:node==${NODE}" # Temporaly hardcoded until Docker daemon tags gets done
       - REGISTRY_STORAGE_DELETE_ENABLED=true
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://${LOGGING_HOST}"
-
