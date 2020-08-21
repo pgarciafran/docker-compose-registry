@@ -1,0 +1,18 @@
+version: '2'
+services:
+  registry:
+    image: registry:2
+    restart: always
+    container_name: registry
+    ports:
+      - "${SERVICE_ADDRESS}:5000:5000"
+    volumes:
+      - /data/registry:/var/lib/registry
+    environment:
+      - "constraint:node==${NODE}" # Temporaly hardcoded until Docker daemon tags gets done
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${LOGGING_HOST}"
+
